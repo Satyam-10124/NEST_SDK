@@ -1,0 +1,32 @@
+# NEST SDK Core Dependencies
+# Install with: pip install -r requirements.txt
+
+# LLM & AI
+anthropic>=0.18.0
+
+# Web & API
+flask>=3.0.0
+flask-cors>=4.0.0
+requests>=2.31.0
+
+# Agent Communication
+python-a2a==0.5.6
+mcp>=0.1.0
+
+# Configuration & Validation
+pydantic>=2.0.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# CLI & UI
+typer[all]>=0.9.0
+rich>=13.0.0
+questionary>=2.0.0
+click>=8.1.0
+
+# System & Monitoring
+psutil>=5.9.0
+
+# Cloud (optional - for deployment)
+# boto3>=1.34.0
+# docker>=7.0.0

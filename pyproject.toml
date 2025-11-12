@@ -1,0 +1,136 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nest-sdk"
+version = "3.0.0"
+description = "NEST SDK - Build AI Agents with Agent-to-Agent Communication"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "NANDA Team", email = "support@nanda.ai"}
+]
+maintainers = [
+    {name = "Satyam Singhal"}
+]
+keywords = [
+    "ai",
+    "agents",
+    "llm",
+    "claude",
+    "agent-to-agent",
+    "a2a",
+    "nanda",
+    "mcp",
+    "artificial-intelligence"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "anthropic>=0.18.0",
+    "requests>=2.31.0",
+    "python-a2a==0.5.6",
+    "flask>=3.0.0",
+    "flask-cors>=4.0.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "typer[all]>=0.9.0",
+    "rich>=13.0.0",
+    "questionary>=2.0.0",
+    "click>=8.1.0",
+    "mcp>=0.1.0",
+    "psutil>=5.9.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.0.0",
+    "flake8>=7.0.0",
+    "mypy>=1.8.0",
+    "isort>=5.13.0",
+    "bandit>=1.7.0"
+]
+deployment = [
+    "boto3>=1.34.0",
+    "docker>=7.0.0"
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.24.0"
+]
+all = [
+    "nest-sdk[dev,deployment,docs]"
+]
+
+[project.urls]
+Homepage = "https://github.com/projnanda/NEST"
+Documentation = "https://nest-sdk.readthedocs.io"
+Repository = "https://github.com/projnanda/NEST"
+Issues = "https://github.com/projnanda/NEST/issues"
+
+[project.scripts]
+nest = "nest.cli.main:app"
+
+[tool.setuptools]
+packages = ["nest", "nest.cli", "nest.templates", "nest.deployment", "nanda_core"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+nest = ["templates/data/*.yaml"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=nest --cov-report=html --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["nest"]
+omit = ["*/tests/*", "*/test_*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod"
+]
